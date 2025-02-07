@@ -4,16 +4,17 @@ import os
 from jinja2 import Environment, FileSystemLoader
 
 # Set up the Jinja2 environment to load templates from the "templates" folder.
-env = Environment(loader=FileSystemLoader('templates'))
+template_dir = os.path.join(os.path.dirname(__file__), 'agent_templates')
+env = Environment(loader=FileSystemLoader(template_dir))
 
 
 def generate_agent(config: dict, mode: str = "file"):
     """
-    Generate the agent payload.
+    Generate the agent payload and return the filename where it is saved.
 
     :param config: A dictionary with agent configuration.
-    :param mode: "file" for file-based agent, "fileless" for a loader.
-    :return: The rendered Python code as a string.
+    :param mode: "file" for file-based agent, "fileless" for an in-memory loader.
+    :return: The filename where the agent code was saved.
     """
     if mode == "file":
         template = env.get_template('agent_template.py.j2')
@@ -21,19 +22,18 @@ def generate_agent(config: dict, mode: str = "file"):
         output_filename = f"agent_{config.get('agent_id')}.py"
     elif mode == "fileless":
         template = env.get_template('loader_template.py.j2')
-        # For fileless agents, assume that the full agent payload is hosted at a URL.
+        # Assume the full agent payload is hosted at a URL.
         full_agent_url = config.get("agent_payload_url", "https://example.com/agent_payload.py")
         rendered_code = template.render(agent_code_url=full_agent_url)
         output_filename = f"loader_{config.get('agent_id')}.py"
     else:
         raise ValueError("Invalid mode. Choose 'file' or 'fileless'.")
 
-    # Write the generated code to a file.
     with open(output_filename, "w") as f:
         f.write(rendered_code)
 
     print(f"Agent generated and saved as {output_filename}")
-
+    return output_filename
 
 if __name__ == "__main__":
     # Sample configuration for the agent.
