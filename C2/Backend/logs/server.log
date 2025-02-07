@@ -604,3 +604,40 @@ sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) connection to serve
 2025-02-07 15:35:32,372 - DEBUG - dns - Received DNS query from ('127.0.0.1', 58931)
 2025-02-07 15:35:32,372 - DEBUG - dns - Query for il.archive.ubuntu.com. type AAAA
 2025-02-07 15:35:32,372 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 58931) with IP 127.0.0.1
+2025-02-07 15:46:36,746 - INFO - uvicorn.error - Started server process [18763]
+2025-02-07 15:46:36,746 - INFO - uvicorn.error - Waiting for application startup.
+2025-02-07 15:46:36,753 - INFO - uvicorn.error - Application startup complete.
+2025-02-07 15:46:36,753 - INFO - uvicorn.error - Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-02-07 15:46:52,103 - INFO - uvicorn.error - ('127.0.0.1', 49886) - "WebSocket /ws/logs" [accepted]
+2025-02-07 15:46:52,104 - INFO - uvicorn.error - connection open
+2025-02-07 15:46:55,989 - INFO - uvicorn.access - 127.0.0.1:49892 - "POST /api/control/stop HTTP/1.1" 200
+2025-02-07 15:46:55,989 - INFO - c2server - Protocols are not currently running.
+2025-02-07 15:47:02,238 - INFO - uvicorn.access - 127.0.0.1:44044 - "GET /api/status HTTP/1.1" 200
+2025-02-07 15:47:06,148 - INFO - uvicorn.access - 127.0.0.1:44058 - "POST /api/control/start HTTP/1.1" 200
+2025-02-07 15:47:06,149 - INFO - c2server - Starting all protocols...
+2025-02-07 15:47:06,149 - INFO - smb - Initializing SMB Server...
+2025-02-07 15:47:06,149 - INFO - dns - Stopping DNS service: systemd-resolved
+2025-02-07 15:47:06,149 - INFO - icmp - Listening for incoming ICMP-based communications...
+2025-02-07 15:47:06,150 - INFO - c2server - All protocols started in background.
+2025-02-07 15:47:06,150 - INFO - smb - SMB share 'TASKS' added successfully.
+2025-02-07 15:47:06,150 - INFO - http - Starting HTTP C2 server on port 80...
+2025-02-07 15:47:06,150 - INFO - smb - Starting SMB server on port 445...
+2025-02-07 15:47:06,151 - ERROR - http - Missing SSL certificate files! Ensure certificates/server.key and certificates/server.crt exist.
+2025-02-07 15:47:06,170 - INFO - dns - Successfully stopped systemd-resolved.
+2025-02-07 15:47:06,170 - INFO - dns - Starting DNS server on UDP port 53...
+2025-02-07 15:47:06,170 - INFO - dns - DNS server is now running.
+2025-02-07 15:47:17,178 - INFO - c2server - Stopping all protocols...
+2025-02-07 15:47:17,180 - INFO - dns - Stopping DNS server...
+2025-02-07 15:47:17,180 - INFO - dns - DNS server stopped.
+2025-02-07 15:47:17,180 - INFO - dns - Starting DNS service: systemd-resolved
+2025-02-07 15:47:17,270 - INFO - dns - Successfully started systemd-resolved.
+2025-02-07 15:47:18,153 - INFO - smb - Stop event received. Stopping SMB server...
+2025-02-07 15:47:18,179 - INFO - c2server - All protocols stopped.
+2025-02-07 15:47:20,037 - INFO - icmp - ICMP listener stopped.
+2025-02-07 15:47:23,153 - INFO - smb - SMB server stopped.
+2025-02-07 17:46:25,092 - INFO - uvicorn.error - Started server process [21404]
+2025-02-07 17:46:25,092 - INFO - uvicorn.error - Waiting for application startup.
+2025-02-07 17:46:25,101 - INFO - uvicorn.error - Application startup complete.
+2025-02-07 17:46:25,101 - INFO - uvicorn.error - Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-02-07 17:46:43,526 - INFO - uvicorn.access - 127.0.0.1:34014 - "GET /api/status HTTP/1.1" 200
+2025-02-07 17:46:50,510 - INFO - uvicorn.access - 127.0.0.1:39194 - "GET /api/config HTTP/1.1" 200
