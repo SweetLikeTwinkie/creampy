@@ -1,0 +1,606 @@
+2025-02-07 00:56:41,264 - INFO - uvicorn.error - Started server process [12846]
+2025-02-07 00:56:41,264 - INFO - uvicorn.error - Waiting for application startup.
+2025-02-07 00:56:41,267 - ERROR - uvicorn.error - Traceback (most recent call last):
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 146, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3298, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 449, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 1263, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 712, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 179, in _do_get
+    with util.safe_reraise():
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 177, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 390, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 674, in __init__
+    self.__connect()
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 900, in __connect
+    with util.safe_reraise():
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/engine/create.py", line 646, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 622, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/starlette/routing.py", line 693, in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/starlette/routing.py", line 569, in __aenter__
+    await self._router.startup()
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/starlette/routing.py", line 672, in startup
+    handler()
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/C2/Backend/API/admin_api.py", line 138, in startup_event
+    init_db()
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/C2/Backend/API/agent_manager_pg.py", line 59, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/sql/schema.py", line 5907, in create_all
+    bind._run_ddl_visitor(
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3248, in _run_ddl_visitor
+    with self.begin() as conn:
+  File "/usr/lib/python3.12/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3238, in begin
+    with self.connect() as conn:
+         ^^^^^^^^^^^^^^
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3274, in connect
+    return self._connection_cls(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 148, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2439, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 146, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3298, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 449, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 1263, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 712, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 179, in _do_get
+    with util.safe_reraise():
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 177, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 390, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 674, in __init__
+    self.__connect()
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 900, in __connect
+    with util.safe_reraise():
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/engine/create.py", line 646, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 622, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mini_root/PycharmProjects/CreamPy - C2/.venv/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+2025-02-07 00:56:41,268 - ERROR - uvicorn.error - Application startup failed. Exiting.
+2025-02-07 00:58:37,628 - INFO - uvicorn.error - Started server process [13395]
+2025-02-07 00:58:37,628 - INFO - uvicorn.error - Waiting for application startup.
+2025-02-07 00:58:37,644 - INFO - uvicorn.error - Application startup complete.
+2025-02-07 00:58:37,644 - INFO - uvicorn.error - Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-02-07 01:01:31,085 - INFO - uvicorn.error - ('127.0.0.1', 50022) - "WebSocket /ws/logs" [accepted]
+2025-02-07 01:01:31,086 - INFO - uvicorn.error - connection open
+2025-02-07 01:01:35,549 - INFO - uvicorn.access - 127.0.0.1:55850 - "POST /api/control/start HTTP/1.1" 200
+2025-02-07 01:01:35,550 - INFO - c2server - Starting all protocols...
+2025-02-07 01:01:35,550 - INFO - smb - Initializing SMB Server...
+2025-02-07 01:01:35,550 - INFO - dns - Stopping DNS service: systemd-resolved
+2025-02-07 01:01:35,550 - ERROR - smb - Port 445 is already in use. SMB server will not start.
+2025-02-07 01:01:35,550 - INFO - icmp - Listening for incoming ICMP-based communications...
+2025-02-07 01:01:35,550 - INFO - c2server - All protocols started in background.
+2025-02-07 01:01:35,550 - ERROR - icmp - Error in ICMP server: [Errno 1] Operation not permitted
+2025-02-07 01:01:35,551 - INFO - icmp - ICMP listener stopped.
+2025-02-07 01:01:35,551 - ERROR - http - Port 80 is already in use. HTTP server will not start.
+2025-02-07 01:01:35,551 - ERROR - http - Port 443 is already in use. HTTPS server will not start.
+2025-02-07 01:01:38,051 - INFO - dns - Successfully stopped systemd-resolved.
+2025-02-07 01:01:38,051 - ERROR - dns - Port 53 is still in use. DNS server will not start.
+2025-02-07 01:01:38,051 - INFO - dns - Starting DNS service: systemd-resolved
+2025-02-07 01:01:40,536 - INFO - dns - Successfully started systemd-resolved.
+2025-02-07 01:05:39,066 - INFO - uvicorn.error - Started server process [14392]
+2025-02-07 01:05:39,066 - INFO - uvicorn.error - Waiting for application startup.
+2025-02-07 01:05:39,073 - INFO - uvicorn.error - Application startup complete.
+2025-02-07 01:05:39,073 - INFO - uvicorn.error - Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-02-07 01:06:20,555 - INFO - uvicorn.error - ('127.0.0.1', 39634) - "WebSocket /ws/logs" [accepted]
+2025-02-07 01:06:20,556 - INFO - uvicorn.error - connection open
+2025-02-07 01:06:24,409 - INFO - uvicorn.access - 127.0.0.1:36234 - "GET /api/config HTTP/1.1" 200
+2025-02-07 01:06:39,371 - INFO - uvicorn.access - 127.0.0.1:60554 - "POST /api/control/start HTTP/1.1" 200
+2025-02-07 01:06:39,371 - INFO - c2server - Starting all protocols...
+2025-02-07 01:06:39,371 - INFO - smb - Initializing SMB Server...
+2025-02-07 01:06:39,372 - ERROR - smb - Port 445 is already in use. SMB server will not start.
+2025-02-07 01:06:39,372 - INFO - dns - Stopping DNS service: systemd-resolved
+2025-02-07 01:06:39,372 - INFO - c2server - All protocols started in background.
+2025-02-07 01:06:39,372 - INFO - icmp - Listening for incoming ICMP-based communications...
+2025-02-07 01:06:39,372 - ERROR - icmp - Error in ICMP server: [Errno 1] Operation not permitted
+2025-02-07 01:06:39,372 - ERROR - http - Port 80 is already in use. HTTP server will not start.
+2025-02-07 01:06:39,372 - INFO - icmp - ICMP listener stopped.
+2025-02-07 01:06:39,372 - ERROR - http - Port 443 is already in use. HTTPS server will not start.
+2025-02-07 01:06:43,930 - INFO - dns - Successfully stopped systemd-resolved.
+2025-02-07 01:06:43,930 - ERROR - dns - Port 53 is still in use. DNS server will not start.
+2025-02-07 01:06:43,930 - INFO - dns - Starting DNS service: systemd-resolved
+2025-02-07 01:06:46,284 - INFO - dns - Successfully started systemd-resolved.
+2025-02-07 01:09:11,866 - INFO - uvicorn.access - 127.0.0.1:39256 - "GET / HTTP/1.1" 404
+2025-02-07 01:09:11,903 - INFO - uvicorn.access - 127.0.0.1:39256 - "GET /favicon.ico HTTP/1.1" 404
+2025-02-07 01:11:04,427 - INFO - uvicorn.error - connection closed
+2025-02-07 01:11:04,491 - INFO - c2server - WebSocket disconnected.
+2025-02-07 01:11:10,531 - INFO - uvicorn.error - Shutting down
+2025-02-07 01:11:10,631 - INFO - uvicorn.error - Waiting for application shutdown.
+2025-02-07 01:11:10,631 - INFO - uvicorn.error - Application shutdown complete.
+2025-02-07 01:11:10,631 - INFO - uvicorn.error - Finished server process [14392]
+2025-02-07 01:11:23,612 - INFO - uvicorn.error - Started server process [15643]
+2025-02-07 01:11:23,613 - INFO - uvicorn.error - Waiting for application startup.
+2025-02-07 01:11:23,620 - INFO - uvicorn.error - Application startup complete.
+2025-02-07 01:11:23,620 - INFO - uvicorn.error - Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-02-07 01:11:26,027 - INFO - uvicorn.error - Shutting down
+2025-02-07 01:11:26,128 - INFO - uvicorn.error - Waiting for application shutdown.
+2025-02-07 01:11:26,128 - INFO - uvicorn.error - Application shutdown complete.
+2025-02-07 01:11:26,128 - INFO - uvicorn.error - Finished server process [15643]
+2025-02-07 01:12:38,592 - INFO - uvicorn.error - Started server process [15784]
+2025-02-07 01:12:38,592 - INFO - uvicorn.error - Waiting for application startup.
+2025-02-07 01:12:38,598 - INFO - uvicorn.error - Application startup complete.
+2025-02-07 01:12:38,599 - INFO - uvicorn.error - Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-02-07 01:14:49,606 - INFO - uvicorn.error - ('127.0.0.1', 55158) - "WebSocket /ws/logs" [accepted]
+2025-02-07 01:14:49,607 - INFO - uvicorn.error - connection open
+2025-02-07 01:14:53,943 - INFO - uvicorn.access - 127.0.0.1:33878 - "POST /api/control/start HTTP/1.1" 200
+2025-02-07 01:14:53,943 - INFO - c2server - Starting all protocols...
+2025-02-07 01:14:53,943 - INFO - smb - Initializing SMB Server...
+2025-02-07 01:14:53,943 - INFO - dns - Stopping DNS service: systemd-resolved
+2025-02-07 01:14:53,944 - INFO - smb - Created SMB share directory: smb_tasks
+2025-02-07 01:14:53,944 - INFO - icmp - Listening for incoming ICMP-based communications...
+2025-02-07 01:14:53,944 - INFO - c2server - All protocols started in background.
+2025-02-07 01:14:53,944 - INFO - smb - SMB share 'TASKS' added successfully.
+2025-02-07 01:14:53,945 - INFO - smb - Starting SMB server on port 445...
+2025-02-07 01:14:53,945 - INFO - http - Starting HTTP C2 server on port 80...
+2025-02-07 01:14:53,946 - ERROR - http - HTTP Server failed to start: No module named 'protocols'
+2025-02-07 01:14:53,946 - ERROR - http - Missing SSL certificate files! Ensure certificates/server.key and certificates/server.crt exist.
+2025-02-07 01:14:53,966 - INFO - dns - Successfully stopped systemd-resolved.
+2025-02-07 01:14:53,966 - INFO - dns - Starting DNS server on UDP port 53...
+2025-02-07 01:14:53,966 - INFO - dns - DNS server is now running.
+2025-02-07 01:19:41,959 - DEBUG - dns - Received DNS query from ('127.0.0.1', 44516)
+2025-02-07 01:19:41,959 - DEBUG - dns - Query for www.jetbrains.com. type A
+2025-02-07 01:19:41,959 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 44516) with IP 127.0.0.1
+2025-02-07 01:19:41,959 - DEBUG - dns - Received DNS query from ('127.0.0.1', 44516)
+2025-02-07 01:19:41,959 - DEBUG - dns - Query for www.jetbrains.com. type AAAA
+2025-02-07 01:19:41,959 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 44516) with IP 127.0.0.1
+2025-02-07 01:19:46,963 - DEBUG - dns - Received DNS query from ('127.0.0.1', 44516)
+2025-02-07 01:19:46,963 - DEBUG - dns - Query for www.jetbrains.com. type A
+2025-02-07 01:19:46,965 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 44516) with IP 127.0.0.1
+2025-02-07 01:19:46,965 - DEBUG - dns - Received DNS query from ('127.0.0.1', 44516)
+2025-02-07 01:19:46,965 - DEBUG - dns - Query for www.jetbrains.com. type AAAA
+2025-02-07 01:19:46,965 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 44516) with IP 127.0.0.1
+2025-02-07 01:19:51,968 - DEBUG - dns - Received DNS query from ('127.0.0.1', 45250)
+2025-02-07 01:19:51,969 - DEBUG - dns - Query for www.jetbrains.com.local. type A
+2025-02-07 01:19:51,970 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 45250) with IP 127.0.0.1
+2025-02-07 01:19:51,970 - DEBUG - dns - Received DNS query from ('127.0.0.1', 45250)
+2025-02-07 01:19:51,970 - DEBUG - dns - Query for www.jetbrains.com.local. type AAAA
+2025-02-07 01:19:51,970 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 45250) with IP 127.0.0.1
+2025-02-07 01:19:56,973 - DEBUG - dns - Received DNS query from ('127.0.0.1', 45250)
+2025-02-07 01:19:56,975 - DEBUG - dns - Query for www.jetbrains.com.local. type A
+2025-02-07 01:19:56,975 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 45250) with IP 127.0.0.1
+2025-02-07 01:19:56,975 - DEBUG - dns - Received DNS query from ('127.0.0.1', 45250)
+2025-02-07 01:19:56,975 - DEBUG - dns - Query for www.jetbrains.com.local. type AAAA
+2025-02-07 01:19:56,975 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 45250) with IP 127.0.0.1
+2025-02-07 01:20:25,376 - INFO - c2server - Stopping all protocols...
+2025-02-07 01:20:25,993 - INFO - smb - Stop event received. Stopping SMB server...
+2025-02-07 01:20:26,004 - INFO - dns - Stopping DNS server...
+2025-02-07 01:20:26,004 - INFO - dns - DNS server stopped.
+2025-02-07 01:20:26,004 - INFO - dns - Starting DNS service: systemd-resolved
+2025-02-07 01:20:26,008 - INFO - dns - Successfully started systemd-resolved.
+2025-02-07 01:20:26,377 - INFO - c2server - All protocols stopped.
+2025-02-07 01:20:30,160 - INFO - icmp - ICMP listener stopped.
+2025-02-07 01:20:30,993 - INFO - smb - SMB server stopped.
+2025-02-07 01:20:47,112 - INFO - c2server - Starting all protocols...
+2025-02-07 01:20:47,112 - INFO - c2server - All protocols started in background.
+2025-02-07 01:20:47,112 - INFO - smb - Initializing SMB Server...
+2025-02-07 01:20:47,112 - INFO - dns - Stopping DNS service: systemd-resolved
+2025-02-07 01:20:47,112 - INFO - http - Starting HTTP C2 server on port 80...
+2025-02-07 01:20:47,112 - INFO - icmp - Listening for incoming ICMP-based communications...
+2025-02-07 01:20:47,113 - ERROR - http - HTTP Server failed to start: No module named 'protocols'
+2025-02-07 01:20:47,113 - INFO - smb - SMB share 'TASKS' added successfully.
+2025-02-07 01:20:47,114 - INFO - smb - Starting SMB server on port 445...
+2025-02-07 01:20:47,114 - ERROR - http - Missing SSL certificate files! Ensure certificates/server.key and certificates/server.crt exist.
+2025-02-07 01:20:47,136 - INFO - dns - Successfully stopped systemd-resolved.
+2025-02-07 01:20:47,136 - INFO - dns - Starting DNS server on UDP port 53...
+2025-02-07 01:20:47,136 - INFO - dns - DNS server is now running.
+2025-02-07 01:21:12,377 - INFO - uvicorn.error - Started server process [16330]
+2025-02-07 01:21:12,377 - INFO - uvicorn.error - Waiting for application startup.
+2025-02-07 01:21:12,385 - INFO - uvicorn.error - Application startup complete.
+2025-02-07 01:21:12,385 - INFO - uvicorn.error - Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-02-07 01:21:15,567 - INFO - uvicorn.error - ('127.0.0.1', 34964) - "WebSocket /ws/logs" [accepted]
+2025-02-07 01:21:15,568 - INFO - uvicorn.error - connection open
+2025-02-07 01:21:19,554 - INFO - uvicorn.access - 127.0.0.1:34968 - "POST /api/control/start HTTP/1.1" 200
+2025-02-07 01:21:19,554 - INFO - c2server - Starting all protocols...
+2025-02-07 01:21:19,555 - INFO - smb - Initializing SMB Server...
+2025-02-07 01:21:19,555 - INFO - dns - Stopping DNS service: systemd-resolved
+2025-02-07 01:21:19,556 - INFO - smb - SMB share 'TASKS' added successfully.
+2025-02-07 01:21:19,556 - INFO - icmp - Listening for incoming ICMP-based communications...
+2025-02-07 01:21:19,556 - INFO - c2server - All protocols started in background.
+2025-02-07 01:21:19,556 - INFO - smb - Starting SMB server on port 445...
+2025-02-07 01:21:19,556 - INFO - http - Starting HTTP C2 server on port 80...
+2025-02-07 01:21:19,557 - ERROR - http - Missing SSL certificate files! Ensure certificates/server.key and certificates/server.crt exist.
+2025-02-07 01:21:19,560 - INFO - dns - Successfully stopped systemd-resolved.
+2025-02-07 01:21:19,560 - INFO - dns - Starting DNS server on UDP port 53...
+2025-02-07 01:21:19,560 - INFO - dns - DNS server is now running.
+2025-02-07 01:23:01,932 - INFO - icmp - ICMP listener stopped.
+2025-02-07 01:23:02,906 - DEBUG - dns - Received DNS query from ('127.0.0.1', 44567)
+2025-02-07 01:23:02,906 - DEBUG - dns - Query for www.googleapis.com. type A
+2025-02-07 01:23:02,906 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 44567) with IP 127.0.0.1
+2025-02-07 01:23:02,906 - DEBUG - dns - Received DNS query from ('127.0.0.1', 44567)
+2025-02-07 01:23:02,907 - DEBUG - dns - Query for www.googleapis.com. type AAAA
+2025-02-07 01:23:02,907 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 44567) with IP 127.0.0.1
+2025-02-07 15:33:12,884 - DEBUG - dns - Received DNS query from ('127.0.0.1', 44567)
+2025-02-07 15:33:12,884 - DEBUG - dns - Query for www.googleapis.com. type A
+2025-02-07 15:33:12,884 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 44567) with IP 127.0.0.1
+2025-02-07 15:33:12,886 - DEBUG - dns - Received DNS query from ('127.0.0.1', 44567)
+2025-02-07 15:33:12,886 - DEBUG - dns - Query for www.googleapis.com. type AAAA
+2025-02-07 15:33:12,886 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 44567) with IP 127.0.0.1
+2025-02-07 15:33:17,233 - DEBUG - dns - Received DNS query from ('127.0.0.1', 41518)
+2025-02-07 15:33:17,233 - DEBUG - dns - Query for _http._tcp.il.archive.ubuntu.com. type SRV
+2025-02-07 15:33:17,233 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 41518) with IP 127.0.0.1
+2025-02-07 15:33:17,887 - DEBUG - dns - Received DNS query from ('127.0.0.1', 44225)
+2025-02-07 15:33:17,888 - DEBUG - dns - Query for www.googleapis.com. type A
+2025-02-07 15:33:17,888 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 44225) with IP 127.0.0.1
+2025-02-07 15:33:17,888 - DEBUG - dns - Received DNS query from ('127.0.0.1', 44225)
+2025-02-07 15:33:17,888 - DEBUG - dns - Query for www.googleapis.com. type AAAA
+2025-02-07 15:33:17,888 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 44225) with IP 127.0.0.1
+2025-02-07 15:33:22,238 - DEBUG - dns - Received DNS query from ('127.0.0.1', 41518)
+2025-02-07 15:33:22,238 - DEBUG - dns - Query for _http._tcp.il.archive.ubuntu.com. type SRV
+2025-02-07 15:33:22,239 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 41518) with IP 127.0.0.1
+2025-02-07 15:33:22,892 - DEBUG - dns - Received DNS query from ('127.0.0.1', 44225)
+2025-02-07 15:33:22,892 - DEBUG - dns - Query for www.googleapis.com. type A
+2025-02-07 15:33:22,893 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 44225) with IP 127.0.0.1
+2025-02-07 15:33:22,893 - DEBUG - dns - Received DNS query from ('127.0.0.1', 44225)
+2025-02-07 15:33:22,893 - DEBUG - dns - Query for www.googleapis.com. type AAAA
+2025-02-07 15:33:22,893 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 44225) with IP 127.0.0.1
+2025-02-07 15:33:27,244 - DEBUG - dns - Received DNS query from ('127.0.0.1', 34405)
+2025-02-07 15:33:27,244 - DEBUG - dns - Query for il.archive.ubuntu.com. type A
+2025-02-07 15:33:27,244 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 34405) with IP 127.0.0.1
+2025-02-07 15:33:27,244 - DEBUG - dns - Received DNS query from ('127.0.0.1', 34405)
+2025-02-07 15:33:27,244 - DEBUG - dns - Query for il.archive.ubuntu.com. type AAAA
+2025-02-07 15:33:27,244 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 34405) with IP 127.0.0.1
+2025-02-07 15:33:27,759 - DEBUG - dns - Received DNS query from ('127.0.0.1', 58682)
+2025-02-07 15:33:27,760 - DEBUG - dns - Query for 17.0.0.10.in-addr.arpa. type PTR
+2025-02-07 15:33:27,760 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 58682) with IP 127.0.0.1
+2025-02-07 15:33:27,899 - DEBUG - dns - Received DNS query from ('127.0.0.1', 45788)
+2025-02-07 15:33:27,899 - DEBUG - dns - Query for oauth2.googleapis.com. type A
+2025-02-07 15:33:27,901 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 45788) with IP 127.0.0.1
+2025-02-07 15:33:27,901 - DEBUG - dns - Received DNS query from ('127.0.0.1', 45788)
+2025-02-07 15:33:27,901 - DEBUG - dns - Query for oauth2.googleapis.com. type AAAA
+2025-02-07 15:33:27,901 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 45788) with IP 127.0.0.1
+2025-02-07 15:33:28,697 - DEBUG - dns - Received DNS query from ('127.0.0.1', 47939)
+2025-02-07 15:33:28,698 - DEBUG - dns - Query for apidata.googleusercontent.com. type A
+2025-02-07 15:33:28,698 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 47939) with IP 127.0.0.1
+2025-02-07 15:33:28,698 - DEBUG - dns - Received DNS query from ('127.0.0.1', 47939)
+2025-02-07 15:33:28,698 - DEBUG - dns - Query for apidata.googleusercontent.com. type AAAA
+2025-02-07 15:33:28,698 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 47939) with IP 127.0.0.1
+2025-02-07 15:33:28,698 - DEBUG - dns - Received DNS query from ('127.0.0.1', 42459)
+2025-02-07 15:33:28,698 - DEBUG - dns - Query for www.google.com. type A
+2025-02-07 15:33:28,698 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 42459) with IP 127.0.0.1
+2025-02-07 15:33:28,698 - DEBUG - dns - Received DNS query from ('127.0.0.1', 42459)
+2025-02-07 15:33:28,698 - DEBUG - dns - Query for www.google.com. type AAAA
+2025-02-07 15:33:28,698 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 42459) with IP 127.0.0.1
+2025-02-07 15:33:32,249 - DEBUG - dns - Received DNS query from ('127.0.0.1', 34405)
+2025-02-07 15:33:32,249 - DEBUG - dns - Query for il.archive.ubuntu.com. type A
+2025-02-07 15:33:32,249 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 34405) with IP 127.0.0.1
+2025-02-07 15:33:32,249 - DEBUG - dns - Received DNS query from ('127.0.0.1', 34405)
+2025-02-07 15:33:32,249 - DEBUG - dns - Query for il.archive.ubuntu.com. type AAAA
+2025-02-07 15:33:32,249 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 34405) with IP 127.0.0.1
+2025-02-07 15:33:32,765 - DEBUG - dns - Received DNS query from ('127.0.0.1', 58682)
+2025-02-07 15:33:32,765 - DEBUG - dns - Query for 17.0.0.10.in-addr.arpa. type PTR
+2025-02-07 15:33:32,765 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 58682) with IP 127.0.0.1
+2025-02-07 15:33:32,904 - DEBUG - dns - Received DNS query from ('127.0.0.1', 45788)
+2025-02-07 15:33:32,905 - DEBUG - dns - Query for oauth2.googleapis.com. type A
+2025-02-07 15:33:32,911 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 45788) with IP 127.0.0.1
+2025-02-07 15:33:32,911 - DEBUG - dns - Received DNS query from ('127.0.0.1', 45788)
+2025-02-07 15:33:32,911 - DEBUG - dns - Query for oauth2.googleapis.com. type AAAA
+2025-02-07 15:33:32,911 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 45788) with IP 127.0.0.1
+2025-02-07 15:33:33,703 - DEBUG - dns - Received DNS query from ('127.0.0.1', 47939)
+2025-02-07 15:33:33,703 - DEBUG - dns - Query for apidata.googleusercontent.com. type A
+2025-02-07 15:33:33,703 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 47939) with IP 127.0.0.1
+2025-02-07 15:33:33,703 - DEBUG - dns - Received DNS query from ('127.0.0.1', 47939)
+2025-02-07 15:33:33,703 - DEBUG - dns - Query for apidata.googleusercontent.com. type AAAA
+2025-02-07 15:33:33,703 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 47939) with IP 127.0.0.1
+2025-02-07 15:33:33,703 - DEBUG - dns - Received DNS query from ('127.0.0.1', 42459)
+2025-02-07 15:33:33,703 - DEBUG - dns - Query for www.google.com. type A
+2025-02-07 15:33:33,703 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 42459) with IP 127.0.0.1
+2025-02-07 15:33:33,703 - DEBUG - dns - Received DNS query from ('127.0.0.1', 42459)
+2025-02-07 15:33:33,703 - DEBUG - dns - Query for www.google.com. type AAAA
+2025-02-07 15:33:33,703 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 42459) with IP 127.0.0.1
+2025-02-07 15:33:37,254 - DEBUG - dns - Received DNS query from ('127.0.0.1', 51549)
+2025-02-07 15:33:37,254 - DEBUG - dns - Query for il.archive.ubuntu.com.local. type A
+2025-02-07 15:33:37,254 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 51549) with IP 127.0.0.1
+2025-02-07 15:33:37,254 - DEBUG - dns - Received DNS query from ('127.0.0.1', 51549)
+2025-02-07 15:33:37,255 - DEBUG - dns - Query for il.archive.ubuntu.com.local. type AAAA
+2025-02-07 15:33:37,255 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 51549) with IP 127.0.0.1
+2025-02-07 15:33:37,770 - DEBUG - dns - Received DNS query from ('127.0.0.1', 35761)
+2025-02-07 15:33:37,770 - DEBUG - dns - Query for 1.0.17.172.in-addr.arpa. type PTR
+2025-02-07 15:33:37,770 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 35761) with IP 127.0.0.1
+2025-02-07 15:33:37,910 - DEBUG - dns - Received DNS query from ('127.0.0.1', 33677)
+2025-02-07 15:33:37,910 - DEBUG - dns - Query for oauth2.googleapis.com.local. type A
+2025-02-07 15:33:37,910 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 33677) with IP 127.0.0.1
+2025-02-07 15:33:37,910 - DEBUG - dns - Received DNS query from ('127.0.0.1', 33677)
+2025-02-07 15:33:37,916 - DEBUG - dns - Query for oauth2.googleapis.com.local. type AAAA
+2025-02-07 15:33:37,916 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 33677) with IP 127.0.0.1
+2025-02-07 15:33:38,708 - DEBUG - dns - Received DNS query from ('127.0.0.1', 41518)
+2025-02-07 15:33:38,708 - DEBUG - dns - Query for apidata.googleusercontent.com.local. type A
+2025-02-07 15:33:38,708 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 41518) with IP 127.0.0.1
+2025-02-07 15:33:38,708 - DEBUG - dns - Received DNS query from ('127.0.0.1', 41518)
+2025-02-07 15:33:38,708 - DEBUG - dns - Query for apidata.googleusercontent.com.local. type AAAA
+2025-02-07 15:33:38,708 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 41518) with IP 127.0.0.1
+2025-02-07 15:33:38,708 - DEBUG - dns - Received DNS query from ('127.0.0.1', 44124)
+2025-02-07 15:33:38,708 - DEBUG - dns - Query for www.google.com.local. type A
+2025-02-07 15:33:38,708 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 44124) with IP 127.0.0.1
+2025-02-07 15:33:38,709 - DEBUG - dns - Received DNS query from ('127.0.0.1', 44124)
+2025-02-07 15:33:38,709 - DEBUG - dns - Query for www.google.com.local. type AAAA
+2025-02-07 15:33:38,709 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 44124) with IP 127.0.0.1
+2025-02-07 15:33:42,259 - DEBUG - dns - Received DNS query from ('127.0.0.1', 51549)
+2025-02-07 15:33:42,260 - DEBUG - dns - Query for il.archive.ubuntu.com.local. type A
+2025-02-07 15:33:42,260 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 51549) with IP 127.0.0.1
+2025-02-07 15:33:42,260 - DEBUG - dns - Received DNS query from ('127.0.0.1', 51549)
+2025-02-07 15:33:42,260 - DEBUG - dns - Query for il.archive.ubuntu.com.local. type AAAA
+2025-02-07 15:33:42,260 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 51549) with IP 127.0.0.1
+2025-02-07 15:33:42,775 - DEBUG - dns - Received DNS query from ('127.0.0.1', 35761)
+2025-02-07 15:33:42,775 - DEBUG - dns - Query for 1.0.17.172.in-addr.arpa. type PTR
+2025-02-07 15:33:42,775 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 35761) with IP 127.0.0.1
+2025-02-07 15:33:42,912 - DEBUG - dns - Received DNS query from ('127.0.0.1', 33677)
+2025-02-07 15:33:42,912 - DEBUG - dns - Query for oauth2.googleapis.com.local. type A
+2025-02-07 15:33:42,918 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 33677) with IP 127.0.0.1
+2025-02-07 15:33:42,918 - DEBUG - dns - Received DNS query from ('127.0.0.1', 33677)
+2025-02-07 15:33:42,918 - DEBUG - dns - Query for oauth2.googleapis.com.local. type AAAA
+2025-02-07 15:33:42,918 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 33677) with IP 127.0.0.1
+2025-02-07 15:33:43,713 - DEBUG - dns - Received DNS query from ('127.0.0.1', 41518)
+2025-02-07 15:33:43,713 - DEBUG - dns - Query for apidata.googleusercontent.com.local. type A
+2025-02-07 15:33:43,713 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 41518) with IP 127.0.0.1
+2025-02-07 15:33:43,713 - DEBUG - dns - Received DNS query from ('127.0.0.1', 41518)
+2025-02-07 15:33:43,713 - DEBUG - dns - Query for apidata.googleusercontent.com.local. type AAAA
+2025-02-07 15:33:43,713 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 41518) with IP 127.0.0.1
+2025-02-07 15:33:43,713 - DEBUG - dns - Received DNS query from ('127.0.0.1', 44124)
+2025-02-07 15:33:43,713 - DEBUG - dns - Query for www.google.com.local. type A
+2025-02-07 15:33:43,714 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 44124) with IP 127.0.0.1
+2025-02-07 15:33:43,714 - DEBUG - dns - Received DNS query from ('127.0.0.1', 44124)
+2025-02-07 15:33:43,714 - DEBUG - dns - Query for www.google.com.local. type AAAA
+2025-02-07 15:33:43,714 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 44124) with IP 127.0.0.1
+2025-02-07 15:33:47,265 - DEBUG - dns - Received DNS query from ('127.0.0.1', 39000)
+2025-02-07 15:33:47,265 - DEBUG - dns - Query for _http._tcp.il.archive.ubuntu.com. type SRV
+2025-02-07 15:33:47,265 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 39000) with IP 127.0.0.1
+2025-02-07 15:33:47,780 - DEBUG - dns - Received DNS query from ('127.0.0.1', 51634)
+2025-02-07 15:33:47,781 - DEBUG - dns - Query for 1.0.18.172.in-addr.arpa. type PTR
+2025-02-07 15:33:47,781 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 51634) with IP 127.0.0.1
+2025-02-07 15:33:47,918 - DEBUG - dns - Received DNS query from ('127.0.0.1', 38000)
+2025-02-07 15:33:47,919 - DEBUG - dns - Query for login.live.com. type A
+2025-02-07 15:33:47,920 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 38000) with IP 127.0.0.1
+2025-02-07 15:33:47,920 - DEBUG - dns - Received DNS query from ('127.0.0.1', 38000)
+2025-02-07 15:33:47,920 - DEBUG - dns - Query for login.live.com. type AAAA
+2025-02-07 15:33:47,920 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 38000) with IP 127.0.0.1
+2025-02-07 15:33:52,270 - DEBUG - dns - Received DNS query from ('127.0.0.1', 39000)
+2025-02-07 15:33:52,270 - DEBUG - dns - Query for _http._tcp.il.archive.ubuntu.com. type SRV
+2025-02-07 15:33:52,270 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 39000) with IP 127.0.0.1
+2025-02-07 15:33:52,786 - DEBUG - dns - Received DNS query from ('127.0.0.1', 51634)
+2025-02-07 15:33:52,786 - DEBUG - dns - Query for 1.0.18.172.in-addr.arpa. type PTR
+2025-02-07 15:33:52,786 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 51634) with IP 127.0.0.1
+2025-02-07 15:33:52,922 - DEBUG - dns - Received DNS query from ('127.0.0.1', 38000)
+2025-02-07 15:33:52,922 - DEBUG - dns - Query for login.live.com. type A
+2025-02-07 15:33:52,928 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 38000) with IP 127.0.0.1
+2025-02-07 15:33:52,928 - DEBUG - dns - Received DNS query from ('127.0.0.1', 38000)
+2025-02-07 15:33:52,928 - DEBUG - dns - Query for login.live.com. type AAAA
+2025-02-07 15:33:52,928 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 38000) with IP 127.0.0.1
+2025-02-07 15:33:57,275 - DEBUG - dns - Received DNS query from ('127.0.0.1', 53634)
+2025-02-07 15:33:57,275 - DEBUG - dns - Query for il.archive.ubuntu.com. type A
+2025-02-07 15:33:57,275 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 53634) with IP 127.0.0.1
+2025-02-07 15:33:57,275 - DEBUG - dns - Received DNS query from ('127.0.0.1', 53634)
+2025-02-07 15:33:57,276 - DEBUG - dns - Query for il.archive.ubuntu.com. type AAAA
+2025-02-07 15:33:57,276 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 53634) with IP 127.0.0.1
+2025-02-07 15:33:57,791 - DEBUG - dns - Received DNS query from ('127.0.0.1', 56663)
+2025-02-07 15:33:57,791 - DEBUG - dns - Query for 1.0.19.172.in-addr.arpa. type PTR
+2025-02-07 15:33:57,791 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 56663) with IP 127.0.0.1
+2025-02-07 15:33:57,927 - DEBUG - dns - Received DNS query from ('127.0.0.1', 34220)
+2025-02-07 15:33:57,927 - DEBUG - dns - Query for login.live.com.local. type A
+2025-02-07 15:33:57,927 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 34220) with IP 127.0.0.1
+2025-02-07 15:33:57,927 - DEBUG - dns - Received DNS query from ('127.0.0.1', 34220)
+2025-02-07 15:33:57,928 - DEBUG - dns - Query for login.live.com.local. type AAAA
+2025-02-07 15:33:57,928 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 34220) with IP 127.0.0.1
+2025-02-07 15:34:02,280 - DEBUG - dns - Received DNS query from ('127.0.0.1', 53634)
+2025-02-07 15:34:02,281 - DEBUG - dns - Query for il.archive.ubuntu.com. type A
+2025-02-07 15:34:02,281 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 53634) with IP 127.0.0.1
+2025-02-07 15:34:02,281 - DEBUG - dns - Received DNS query from ('127.0.0.1', 53634)
+2025-02-07 15:34:02,281 - DEBUG - dns - Query for il.archive.ubuntu.com. type AAAA
+2025-02-07 15:34:02,281 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 53634) with IP 127.0.0.1
+2025-02-07 15:34:02,794 - DEBUG - dns - Received DNS query from ('127.0.0.1', 56663)
+2025-02-07 15:34:02,794 - DEBUG - dns - Query for 1.0.19.172.in-addr.arpa. type PTR
+2025-02-07 15:34:02,794 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 56663) with IP 127.0.0.1
+2025-02-07 15:34:02,932 - DEBUG - dns - Received DNS query from ('127.0.0.1', 34220)
+2025-02-07 15:34:02,933 - DEBUG - dns - Query for login.live.com.local. type A
+2025-02-07 15:34:02,933 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 34220) with IP 127.0.0.1
+2025-02-07 15:34:02,933 - DEBUG - dns - Received DNS query from ('127.0.0.1', 34220)
+2025-02-07 15:34:02,933 - DEBUG - dns - Query for login.live.com.local. type AAAA
+2025-02-07 15:34:02,933 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 34220) with IP 127.0.0.1
+2025-02-07 15:34:07,286 - DEBUG - dns - Received DNS query from ('127.0.0.1', 37544)
+2025-02-07 15:34:07,286 - DEBUG - dns - Query for il.archive.ubuntu.com.local. type A
+2025-02-07 15:34:07,286 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 37544) with IP 127.0.0.1
+2025-02-07 15:34:07,286 - DEBUG - dns - Received DNS query from ('127.0.0.1', 37544)
+2025-02-07 15:34:07,286 - DEBUG - dns - Query for il.archive.ubuntu.com.local. type AAAA
+2025-02-07 15:34:07,286 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 37544) with IP 127.0.0.1
+2025-02-07 15:34:07,799 - DEBUG - dns - Received DNS query from ('127.0.0.1', 56441)
+2025-02-07 15:34:07,799 - DEBUG - dns - Query for 1.6.8.5.8.7.6.3.0.1.5.f.5.a.9.4.0.0.c.a.f.4.7.4.1.0.7.c.6.0.a.2.ip6.arpa. type PTR
+2025-02-07 15:34:07,799 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 56441) with IP 127.0.0.1
+2025-02-07 15:34:12,291 - DEBUG - dns - Received DNS query from ('127.0.0.1', 37544)
+2025-02-07 15:34:12,291 - DEBUG - dns - Query for il.archive.ubuntu.com.local. type A
+2025-02-07 15:34:12,291 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 37544) with IP 127.0.0.1
+2025-02-07 15:34:12,291 - DEBUG - dns - Received DNS query from ('127.0.0.1', 37544)
+2025-02-07 15:34:12,291 - DEBUG - dns - Query for il.archive.ubuntu.com.local. type AAAA
+2025-02-07 15:34:12,291 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 37544) with IP 127.0.0.1
+2025-02-07 15:34:12,804 - DEBUG - dns - Received DNS query from ('127.0.0.1', 56441)
+2025-02-07 15:34:12,805 - DEBUG - dns - Query for 1.6.8.5.8.7.6.3.0.1.5.f.5.a.9.4.0.0.c.a.f.4.7.4.1.0.7.c.6.0.a.2.ip6.arpa. type PTR
+2025-02-07 15:34:12,805 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 56441) with IP 127.0.0.1
+2025-02-07 15:34:17,295 - DEBUG - dns - Received DNS query from ('127.0.0.1', 40997)
+2025-02-07 15:34:17,296 - DEBUG - dns - Query for _http._tcp.il.archive.ubuntu.com. type SRV
+2025-02-07 15:34:17,296 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 40997) with IP 127.0.0.1
+2025-02-07 15:34:17,810 - DEBUG - dns - Received DNS query from ('127.0.0.1', 39006)
+2025-02-07 15:34:17,810 - DEBUG - dns - Query for 5.a.7.2.c.e.1.4.0.c.5.4.a.2.b.8.0.0.c.a.f.4.7.4.1.0.7.c.6.0.a.2.ip6.arpa. type PTR
+2025-02-07 15:34:17,810 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 39006) with IP 127.0.0.1
+2025-02-07 15:34:22,301 - DEBUG - dns - Received DNS query from ('127.0.0.1', 40997)
+2025-02-07 15:34:22,301 - DEBUG - dns - Query for _http._tcp.il.archive.ubuntu.com. type SRV
+2025-02-07 15:34:22,301 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 40997) with IP 127.0.0.1
+2025-02-07 15:34:22,811 - DEBUG - dns - Received DNS query from ('127.0.0.1', 39006)
+2025-02-07 15:34:22,811 - DEBUG - dns - Query for 5.a.7.2.c.e.1.4.0.c.5.4.a.2.b.8.0.0.c.a.f.4.7.4.1.0.7.c.6.0.a.2.ip6.arpa. type PTR
+2025-02-07 15:34:22,811 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 39006) with IP 127.0.0.1
+2025-02-07 15:34:27,306 - DEBUG - dns - Received DNS query from ('127.0.0.1', 51222)
+2025-02-07 15:34:27,306 - DEBUG - dns - Query for il.archive.ubuntu.com. type A
+2025-02-07 15:34:27,306 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 51222) with IP 127.0.0.1
+2025-02-07 15:34:27,306 - DEBUG - dns - Received DNS query from ('127.0.0.1', 51222)
+2025-02-07 15:34:27,306 - DEBUG - dns - Query for il.archive.ubuntu.com. type AAAA
+2025-02-07 15:34:27,306 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 51222) with IP 127.0.0.1
+2025-02-07 15:34:27,816 - DEBUG - dns - Received DNS query from ('127.0.0.1', 36280)
+2025-02-07 15:34:27,816 - DEBUG - dns - Query for f.c.a.b.0.7.9.d.d.3.0.5.7.e.2.2.0.0.0.0.0.0.0.0.0.0.0.0.0.8.e.f.ip6.arpa. type PTR
+2025-02-07 15:34:27,816 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 36280) with IP 127.0.0.1
+2025-02-07 15:34:32,310 - DEBUG - dns - Received DNS query from ('127.0.0.1', 51222)
+2025-02-07 15:34:32,311 - DEBUG - dns - Query for il.archive.ubuntu.com. type A
+2025-02-07 15:34:32,311 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 51222) with IP 127.0.0.1
+2025-02-07 15:34:32,311 - DEBUG - dns - Received DNS query from ('127.0.0.1', 51222)
+2025-02-07 15:34:32,311 - DEBUG - dns - Query for il.archive.ubuntu.com. type AAAA
+2025-02-07 15:34:32,311 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 51222) with IP 127.0.0.1
+2025-02-07 15:34:32,820 - DEBUG - dns - Received DNS query from ('127.0.0.1', 36280)
+2025-02-07 15:34:32,821 - DEBUG - dns - Query for f.c.a.b.0.7.9.d.d.3.0.5.7.e.2.2.0.0.0.0.0.0.0.0.0.0.0.0.0.8.e.f.ip6.arpa. type PTR
+2025-02-07 15:34:32,821 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 36280) with IP 127.0.0.1
+2025-02-07 15:34:37,315 - DEBUG - dns - Received DNS query from ('127.0.0.1', 40938)
+2025-02-07 15:34:37,316 - DEBUG - dns - Query for il.archive.ubuntu.com.local. type A
+2025-02-07 15:34:37,316 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 40938) with IP 127.0.0.1
+2025-02-07 15:34:37,316 - DEBUG - dns - Received DNS query from ('127.0.0.1', 40938)
+2025-02-07 15:34:37,316 - DEBUG - dns - Query for il.archive.ubuntu.com.local. type AAAA
+2025-02-07 15:34:37,316 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 40938) with IP 127.0.0.1
+2025-02-07 15:34:37,825 - DEBUG - dns - Received DNS query from ('127.0.0.1', 49418)
+2025-02-07 15:34:37,826 - DEBUG - dns - Query for 9.7.c.0.7.b.e.f.f.f.f.8.2.4.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.8.e.f.ip6.arpa. type PTR
+2025-02-07 15:34:37,826 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 49418) with IP 127.0.0.1
+2025-02-07 15:34:42,321 - DEBUG - dns - Received DNS query from ('127.0.0.1', 40938)
+2025-02-07 15:34:42,321 - DEBUG - dns - Query for il.archive.ubuntu.com.local. type A
+2025-02-07 15:34:42,327 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 40938) with IP 127.0.0.1
+2025-02-07 15:34:42,327 - DEBUG - dns - Received DNS query from ('127.0.0.1', 40938)
+2025-02-07 15:34:42,327 - DEBUG - dns - Query for il.archive.ubuntu.com.local. type AAAA
+2025-02-07 15:34:42,327 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 40938) with IP 127.0.0.1
+2025-02-07 15:34:42,830 - DEBUG - dns - Received DNS query from ('127.0.0.1', 49418)
+2025-02-07 15:34:42,831 - DEBUG - dns - Query for 9.7.c.0.7.b.e.f.f.f.f.8.2.4.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.8.e.f.ip6.arpa. type PTR
+2025-02-07 15:34:42,831 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 49418) with IP 127.0.0.1
+2025-02-07 15:34:47,326 - DEBUG - dns - Received DNS query from ('127.0.0.1', 37375)
+2025-02-07 15:34:47,327 - DEBUG - dns - Query for _http._tcp.il.archive.ubuntu.com. type SRV
+2025-02-07 15:34:47,327 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 37375) with IP 127.0.0.1
+2025-02-07 15:34:47,835 - DEBUG - dns - Received DNS query from ('127.0.0.1', 39832)
+2025-02-07 15:34:47,836 - DEBUG - dns - Query for 7.6.b.c.1.3.e.f.f.f.7.6.7.8.8.d.0.0.0.0.0.0.0.0.0.0.0.0.0.8.e.f.ip6.arpa. type PTR
+2025-02-07 15:34:47,836 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 39832) with IP 127.0.0.1
+2025-02-07 15:34:52,331 - DEBUG - dns - Received DNS query from ('127.0.0.1', 37375)
+2025-02-07 15:34:52,331 - DEBUG - dns - Query for _http._tcp.il.archive.ubuntu.com. type SRV
+2025-02-07 15:34:52,332 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 37375) with IP 127.0.0.1
+2025-02-07 15:34:52,841 - DEBUG - dns - Received DNS query from ('127.0.0.1', 39832)
+2025-02-07 15:34:52,841 - DEBUG - dns - Query for 7.6.b.c.1.3.e.f.f.f.7.6.7.8.8.d.0.0.0.0.0.0.0.0.0.0.0.0.0.8.e.f.ip6.arpa. type PTR
+2025-02-07 15:34:52,841 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 39832) with IP 127.0.0.1
+2025-02-07 15:34:57,336 - DEBUG - dns - Received DNS query from ('127.0.0.1', 58873)
+2025-02-07 15:34:57,336 - DEBUG - dns - Query for il.archive.ubuntu.com. type A
+2025-02-07 15:34:57,337 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 58873) with IP 127.0.0.1
+2025-02-07 15:34:57,337 - DEBUG - dns - Received DNS query from ('127.0.0.1', 58873)
+2025-02-07 15:34:57,337 - DEBUG - dns - Query for il.archive.ubuntu.com. type AAAA
+2025-02-07 15:34:57,338 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 58873) with IP 127.0.0.1
+2025-02-07 15:34:57,845 - DEBUG - dns - Received DNS query from ('127.0.0.1', 60108)
+2025-02-07 15:34:57,846 - DEBUG - dns - Query for 0.4.b.d.c.3.e.f.f.f.b.b.a.2.0.1.0.0.0.0.0.0.0.0.0.0.0.0.0.8.e.f.ip6.arpa. type PTR
+2025-02-07 15:34:57,846 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 60108) with IP 127.0.0.1
+2025-02-07 15:35:02,341 - DEBUG - dns - Received DNS query from ('127.0.0.1', 58873)
+2025-02-07 15:35:02,341 - DEBUG - dns - Query for il.archive.ubuntu.com. type A
+2025-02-07 15:35:02,343 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 58873) with IP 127.0.0.1
+2025-02-07 15:35:02,343 - DEBUG - dns - Received DNS query from ('127.0.0.1', 58873)
+2025-02-07 15:35:02,343 - DEBUG - dns - Query for il.archive.ubuntu.com. type AAAA
+2025-02-07 15:35:02,343 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 58873) with IP 127.0.0.1
+2025-02-07 15:35:02,851 - DEBUG - dns - Received DNS query from ('127.0.0.1', 60108)
+2025-02-07 15:35:02,851 - DEBUG - dns - Query for 0.4.b.d.c.3.e.f.f.f.b.b.a.2.0.1.0.0.0.0.0.0.0.0.0.0.0.0.0.8.e.f.ip6.arpa. type PTR
+2025-02-07 15:35:02,851 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 60108) with IP 127.0.0.1
+2025-02-07 15:35:07,346 - DEBUG - dns - Received DNS query from ('127.0.0.1', 44951)
+2025-02-07 15:35:07,347 - DEBUG - dns - Query for il.archive.ubuntu.com.local. type A
+2025-02-07 15:35:07,347 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 44951) with IP 127.0.0.1
+2025-02-07 15:35:07,347 - DEBUG - dns - Received DNS query from ('127.0.0.1', 44951)
+2025-02-07 15:35:07,347 - DEBUG - dns - Query for il.archive.ubuntu.com.local. type AAAA
+2025-02-07 15:35:07,347 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 44951) with IP 127.0.0.1
+2025-02-07 15:35:07,856 - DEBUG - dns - Received DNS query from ('127.0.0.1', 34046)
+2025-02-07 15:35:07,856 - DEBUG - dns - Query for 5.7.0.7.f.5.e.f.f.f.5.9.2.4.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.8.e.f.ip6.arpa. type PTR
+2025-02-07 15:35:07,856 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 34046) with IP 127.0.0.1
+2025-02-07 15:35:12,352 - DEBUG - dns - Received DNS query from ('127.0.0.1', 44951)
+2025-02-07 15:35:12,352 - DEBUG - dns - Query for il.archive.ubuntu.com.local. type A
+2025-02-07 15:35:12,353 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 44951) with IP 127.0.0.1
+2025-02-07 15:35:12,353 - DEBUG - dns - Received DNS query from ('127.0.0.1', 44951)
+2025-02-07 15:35:12,353 - DEBUG - dns - Query for il.archive.ubuntu.com.local. type AAAA
+2025-02-07 15:35:12,353 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 44951) with IP 127.0.0.1
+2025-02-07 15:35:12,861 - DEBUG - dns - Received DNS query from ('127.0.0.1', 34046)
+2025-02-07 15:35:12,861 - DEBUG - dns - Query for 5.7.0.7.f.5.e.f.f.f.5.9.2.4.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.8.e.f.ip6.arpa. type PTR
+2025-02-07 15:35:12,861 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 34046) with IP 127.0.0.1
+2025-02-07 15:35:17,357 - DEBUG - dns - Received DNS query from ('127.0.0.1', 58204)
+2025-02-07 15:35:17,357 - DEBUG - dns - Query for _http._tcp.il.archive.ubuntu.com. type SRV
+2025-02-07 15:35:17,357 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 58204) with IP 127.0.0.1
+2025-02-07 15:35:17,866 - DEBUG - dns - Received DNS query from ('127.0.0.1', 60102)
+2025-02-07 15:35:17,866 - DEBUG - dns - Query for 6.8.7.2.b.b.e.f.f.f.a.4.5.1.8.8.0.0.0.0.0.0.0.0.0.0.0.0.0.8.e.f.ip6.arpa. type PTR
+2025-02-07 15:35:17,866 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 60102) with IP 127.0.0.1
+2025-02-07 15:35:22,362 - DEBUG - dns - Received DNS query from ('127.0.0.1', 58204)
+2025-02-07 15:35:22,362 - DEBUG - dns - Query for _http._tcp.il.archive.ubuntu.com. type SRV
+2025-02-07 15:35:22,362 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 58204) with IP 127.0.0.1
+2025-02-07 15:35:22,871 - DEBUG - dns - Received DNS query from ('127.0.0.1', 60102)
+2025-02-07 15:35:22,871 - DEBUG - dns - Query for 6.8.7.2.b.b.e.f.f.f.a.4.5.1.8.8.0.0.0.0.0.0.0.0.0.0.0.0.0.8.e.f.ip6.arpa. type PTR
+2025-02-07 15:35:22,872 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 60102) with IP 127.0.0.1
+2025-02-07 15:35:27,367 - DEBUG - dns - Received DNS query from ('127.0.0.1', 58931)
+2025-02-07 15:35:27,367 - DEBUG - dns - Query for il.archive.ubuntu.com. type A
+2025-02-07 15:35:27,367 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 58931) with IP 127.0.0.1
+2025-02-07 15:35:27,367 - DEBUG - dns - Received DNS query from ('127.0.0.1', 58931)
+2025-02-07 15:35:27,367 - DEBUG - dns - Query for il.archive.ubuntu.com. type AAAA
+2025-02-07 15:35:27,367 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 58931) with IP 127.0.0.1
+2025-02-07 15:35:27,432 - INFO - c2server - WebSocket disconnected.
+2025-02-07 15:35:32,372 - DEBUG - dns - Received DNS query from ('127.0.0.1', 58931)
+2025-02-07 15:35:32,372 - DEBUG - dns - Query for il.archive.ubuntu.com. type A
+2025-02-07 15:35:32,372 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 58931) with IP 127.0.0.1
+2025-02-07 15:35:32,372 - DEBUG - dns - Received DNS query from ('127.0.0.1', 58931)
+2025-02-07 15:35:32,372 - DEBUG - dns - Query for il.archive.ubuntu.com. type AAAA
+2025-02-07 15:35:32,372 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 58931) with IP 127.0.0.1

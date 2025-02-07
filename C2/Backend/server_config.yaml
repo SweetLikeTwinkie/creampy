@@ -1,0 +1,14 @@
+"server":
+  "ip": "0.0.0.0"
+  "port": 50000
+  "secret_key": "UwYMdEUc2o/rlAGXXKmY/NaNGgJaomeyGxAtxnKVR4s="
+  "master_password": "#.HT#KN[fU|s,d/,?hRFmhy!=NFF5^|X"
+  "debug_mode": "true"
+"https":
+  "use_https": "true"
+  "server_crt": "certificates/server.crt"
+  "server_key": "certificates/server.key"
+"C2":
+  "base_path_length": 8
+  "db_name": "c2db.json"
+  "logging_file_path": "C2/Backend/logs/server.log"
