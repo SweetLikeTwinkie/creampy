@@ -1,10 +1,11 @@
+#!/usr/bin/env python3
 """
 Tests.test_admin_api.py
 
 A simple administrative console for interacting with a C2 server via REST API and WebSockets.
-Provides basic controls to check server status, start/stop/restart protocols, and fetch configuration details.
+Provides basic controls to check server status, start/stop/restart protocols, fetch configuration details,
+and generate agents (file-based or fileless) based on operator choice.
 """
-#!/usr/bin/env python3
 
 import asyncio
 import websockets
@@ -62,6 +63,21 @@ def start_log_listener():
     thread = threading.Thread(target=listen_to_logs, daemon=True)
     thread.start()
 
+def generate_agent_request():
+    """
+    Prompts the operator for agent parameters and sends a request to generate an agent.
+    This functionality lets the operator choose between a file-based agent or a fileless (in-memory) agent.
+    """
+    print("\n--- Agent Generation ---")
+    agent_id = input("Enter agent ID: ")
+    mode = input("Enter mode ('file' for file-based, 'fileless' for in-memory loader): ")
+    # Additional configuration parameters can be collected here as needed.
+    payload = {
+        "agent_id": agent_id,
+        "mode": mode
+    }
+    send_request("agent/generate", method="POST", data=payload)
+
 def main():
     """
     Entry point for the C2 Admin API Test Console.
@@ -74,7 +90,8 @@ def main():
         print("3. Stop protocols")
         print("4. Restart protocols")
         print("5. Get config")
-        print("6. Exit")
+        print("6. Generate agent")
+        print("7. Exit")
 
         choice = input("Select an option: ")
 
@@ -89,6 +106,8 @@ def main():
         elif choice == "5":
             send_request("config")
         elif choice == "6":
+            generate_agent_request()
+        elif choice == "7":
             print("Exiting...")
             break
         else:
