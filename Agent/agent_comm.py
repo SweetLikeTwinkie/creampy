@@ -7,7 +7,6 @@ Supports message sending, command polling, and task retrieval.
 """
 #!/usr/bin/env python3
 
-import json
 import requests
 import dns.message
 import dns.query
