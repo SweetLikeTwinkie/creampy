@@ -1,5 +1,5 @@
 """
-C2.Backend.protocols.dns_server.py
+C2.Backend.protocols.dns_server
 
 Module responsible for initializing and managing a simple DNS server for handling agent communications.
 Utilizes dnslib to parse and construct DNS queries and responses, supporting basic A-record resolution.

@@ -1,5 +1,5 @@
 """
-C2.Backend.API.agent_manager_pg.py
+C2.Backend.API.agent_manager_pg
 
 This module manages Agent records in a PostgreSQL database using SQLAlchemy. 
 It includes functionality for registering, authenticating, listing, 

