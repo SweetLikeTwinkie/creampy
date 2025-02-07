@@ -1,8 +1,6 @@
 # agent_template.py.j2
-import json
-import time
 import asyncio
-from Agent.agent_comm import HTTPComm, DNSComm, ICMPComm, SMBComm
+from old.agent_comm import HTTPComm, DNSComm, ICMPComm, SMBComm
 
 # The agent configuration is embedded directly as a Python dict.
 CONFIG = {{ config_json }}

@@ -7,7 +7,7 @@ Supports HTTP, DNS, ICMP, and SMB-based communication for command retrieval and 
 #!/usr/bin/env python3
 
 import time
-from Agent.agent_comm import HTTPComm, DNSComm, ICMPComm, SMBComm
+from old.agent_comm import HTTPComm, DNSComm, ICMPComm, SMBComm
 
 # Configuration (in a real deployment, use a config file or environment variables)
 AGENT_ID = "agent_001"

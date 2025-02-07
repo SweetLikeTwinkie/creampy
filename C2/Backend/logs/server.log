@@ -1921,3 +1921,43 @@ asyncio.exceptions.CancelledError
 2025-02-07 19:56:14,428 - DEBUG - dns - Received DNS query from ('127.0.0.1', 47946)
 2025-02-07 19:56:14,428 - DEBUG - dns - Query for www.jetbrains.com.local. type AAAA
 2025-02-07 19:56:14,428 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 47946) with IP 127.0.0.1
+2025-02-07 19:58:22,107 - DEBUG - dns - Received DNS query from ('127.0.0.1', 37610)
+2025-02-07 19:58:22,107 - DEBUG - dns - Query for resolver1.opendns.com. type A
+2025-02-07 19:58:22,107 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 37610) with IP 127.0.0.1
+2025-02-07 19:58:22,107 - DEBUG - dns - Received DNS query from ('127.0.0.1', 37610)
+2025-02-07 19:58:22,107 - DEBUG - dns - Query for resolver1.opendns.com. type AAAA
+2025-02-07 19:58:22,107 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 37610) with IP 127.0.0.1
+2025-02-07 19:58:27,112 - DEBUG - dns - Received DNS query from ('127.0.0.1', 37610)
+2025-02-07 19:58:27,112 - DEBUG - dns - Query for resolver1.opendns.com. type A
+2025-02-07 19:58:27,112 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 37610) with IP 127.0.0.1
+2025-02-07 19:58:27,112 - DEBUG - dns - Received DNS query from ('127.0.0.1', 37610)
+2025-02-07 19:58:27,112 - DEBUG - dns - Query for resolver1.opendns.com. type AAAA
+2025-02-07 19:58:27,112 - DEBUG - dns - Sent DNS reply to ('127.0.0.1', 37610) with IP 127.0.0.1
+2025-02-07 19:59:01,141 - INFO - uvicorn.error - Started server process [32612]
+2025-02-07 19:59:01,141 - INFO - uvicorn.error - Waiting for application startup.
+2025-02-07 19:59:01,148 - INFO - uvicorn.error - Application startup complete.
+2025-02-07 19:59:01,148 - INFO - uvicorn.error - Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-02-07 20:03:05,649 - INFO - uvicorn.error - ('127.0.0.1', 47486) - "WebSocket /ws/logs" [accepted]
+2025-02-07 20:03:05,650 - INFO - uvicorn.error - connection open
+2025-02-07 20:03:10,766 - INFO - uvicorn.access - 127.0.0.1:46062 - "POST /api/control/start HTTP/1.1" 200
+2025-02-07 20:03:10,766 - INFO - c2server - Starting all protocols...
+2025-02-07 20:03:10,767 - INFO - smb - Initializing SMB Server...
+2025-02-07 20:03:10,767 - INFO - dns - Stopping DNS service: systemd-resolved
+2025-02-07 20:03:10,767 - INFO - icmp - Listening for incoming ICMP-based communications...
+2025-02-07 20:03:10,767 - INFO - c2server - All protocols started in background.
+2025-02-07 20:03:10,768 - INFO - smb - SMB share 'TASKS' added successfully.
+2025-02-07 20:03:10,768 - INFO - smb - Starting SMB server on port 445...
+2025-02-07 20:03:10,768 - INFO - http - Starting HTTP C2 server on port 80...
+2025-02-07 20:03:10,769 - ERROR - http - Missing SSL certificate files! Ensure certificates/server.key and certificates/server.crt exist.
+2025-02-07 20:03:10,787 - INFO - dns - Successfully stopped systemd-resolved.
+2025-02-07 20:03:10,787 - INFO - dns - Starting DNS server on UDP port 53...
+2025-02-07 20:03:10,787 - INFO - dns - DNS server is now running.
+2025-02-07 20:03:16,872 - INFO - c2server - Stopping all protocols...
+2025-02-07 20:03:17,769 - INFO - smb - Stop event received. Stopping SMB server...
+2025-02-07 20:03:17,794 - INFO - dns - Stopping DNS server...
+2025-02-07 20:03:17,794 - INFO - dns - DNS server stopped.
+2025-02-07 20:03:17,794 - INFO - dns - Starting DNS service: systemd-resolved
+2025-02-07 20:03:17,872 - INFO - c2server - All protocols stopped.
+2025-02-07 20:03:17,879 - INFO - dns - Successfully started systemd-resolved.
+2025-02-07 20:03:22,770 - INFO - smb - SMB server stopped.
+2025-02-07 20:03:30,175 - INFO - icmp - ICMP listener stopped.
