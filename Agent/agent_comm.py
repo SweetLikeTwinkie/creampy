@@ -74,6 +74,17 @@ class HTTPComm(BaseComm):
             print("HTTP send error: ", e)
         return False
 
+    def send_message(self, message:str) -> str:
+        try:
+            url = f"{self.server_url}/api/agent/message"
+            payload = {"message": message}
+            response = requests.post(url, json=payload)
+            if response.status_code == 200:
+                return response.json().get("response", "")
+        except Exception as e:
+            print("HTTP send error: ", e)
+        return ""
+
 class DNSComm(BaseComm):
     """
     Handles communication over DNS, typically using TXT records.
